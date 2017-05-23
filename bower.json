@@ -1,0 +1,23 @@
+{
+  "name": "paper-cropper-dialog",
+  "version": "1.0.0",
+  "description": "A Material Design cropper dialog (Polymer 1.x)",
+  "authors": [
+    "Faan11"
+  ],
+  "main": "paper-cropper-dialog.html",
+  "dependencies": {
+    "polymer": "Polymer/polymer",
+    "iron-flex-layout": "PolymerElements/iron-flex-layout",
+    "paper-dialog": "PolymerElements/paper-dialog",
+    "paper-icon-button": "PolymerElements/paper-icon-button",
+    "paper-button": "PolymerElements/paper-button",
+    "neon-animation": "PolymerElements/neon-animation"
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page",
+    "iron-demo-helpers": "PolymerElements/iron-demo-helpers",
+    "web-component-tester": "",
+    "webcomponentsjs": "webcomponents/webcomponentsjs"
+  }
+}

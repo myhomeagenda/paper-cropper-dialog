@@ -1,0 +1,163 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../paper-dialog/paper-dialog.html">
+<link rel="import" href="../paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../neon-animation/web-animations.html">
+<link rel="import" href="../neon-animation/animations/scale-up-animation.html">
+<link rel="import" href="../neon-animation/animations/fade-out-animation.html">
+<link rel="import" href="../iron-icons/iron-icons.html">
+<!--
+
+### paper-dropzone-dialog
+
+Material design: paper-dropzone-dialog
+
+`<paper-dropzone-dialog>` is a material design dropzone.
+
+# Example:
+
+```html
+<paper-dropzone-dialog text="Sample" on-drop="drop" ></paper-dropzone-dialog>
+```
+
+@demo demo/index.html
+-->
+
+
+<dom-module id="paper-cropper-dialog">
+  <template>
+    <custom-style>
+    </custom-style>
+    <style>
+      :host {}
+      /*
+      #cropperZoneDialog {
+        padding-top: 0px !important;
+        margin-bottom: 0px !important;
+      }*/
+      paper-dialog{
+        margin-top: 0px !important;
+
+      }
+
+      @media only screen and (max-width: 768px) {
+        paper-dialog{
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          padding: 0;
+          margin: 0;
+          margin-bottom: 0px !important;
+        }
+        .self-center{
+          margin: 0;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+        /**
+        #cropperZoneDialog{
+          padding-top: auto;
+          box-shadow: none;
+          position: fixed;
+        }Desktop**/
+      }
+
+
+
+      .self-center {
+        margin:0px !important;
+        padding:0px !important;
+      }
+      #cropperDBox{
+        width: 350px;
+        height:350px;
+        background-color:white;
+      }
+      #cancelButton{
+        height:30px;
+        width:140px;
+        border:2px solid;
+        border-radius:0px 0px 0px 0px;
+      }
+      #saveButton{
+        height:30px;
+        width:140px;
+        border:2px solid;
+        border-radius:0px 0px 0px 0px;
+      }
+    </style>
+    <style is="custom-style">
+      paper-icon-button {
+        position: fixed;
+        top: 0px;
+        bottom: 0px;
+        right: 0px;
+        margin-top: 0px !important;
+        padding: 8px !important;
+      }
+    </style>
+
+    <paper-dialog id="cropperZoneDialog" entry-animation="scale-up-animation" exit-animation="fade-out-animation" with-backdrop>
+
+      <div class="self-center">
+        <div class="cropperDBox">
+          <img id="cropperImage"></img>
+        </div>
+
+        <paper-toolbar class="medium head-codice actions" justify="justified">
+          <div class="top">
+            <paper-button toggle id="cancelButton" class="actions orange-border" on-tap="cropperBack">Cancel</paper-button>
+          </div>
+          <div class="top">o</div>
+          <div class="top">
+            <paper-button toggle id="saveButton"  class="actions green-border" on-tap="cropperSave">Save</paper-button>
+          </div>
+        </paper-toolbar>
+      </div>
+
+
+      <paper-icon-button botton-tap="close" class="top" icon="close" on-tap="dismissCropperZone" dialog-dismiss></paper-icon-button>
+
+    </paper-dialog>
+
+
+
+  </template>
+</dom-module>
+<script>
+  Polymer({
+
+    is: 'paper-cropper-dialog',
+
+    properties: {
+
+      saveText: {
+        type: String,
+        value: "Save",
+        notify: true
+      },
+      exitText: {
+        type: String,
+        value: "Exit",
+        notify: true
+      },
+    },
+
+    dismissCropperZone: function() {
+      this.fire("close");
+    },
+    attached: function() {
+
+    },
+    open:function(){
+      this.$.cropperZoneDialog.open();
+
+    },
+    close:function(){
+      this.$.cropperZoneDialog.close();
+    }
+  });
+</script>
