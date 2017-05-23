@@ -27,10 +27,22 @@
       <h3>Basic paper-cropper-dialog demo</h3>
       <demo-snippet>
         <template>
-          <paper-cropper-dialog id="cropperZone"  ></paper-cropper-dialog>
+          <paper-cropper-dialog id="cropperZone" preview-only   preview-src="images/polymerlogo.png"  ></paper-cropper-dialog>
           <paper-button onclick="document.getElementById('cropperZone').open()">LoadImage</paper-button>
 
+          <script>
 
+          </script>
+        </template>
+      </demo-snippet>
+      <demo-snippet>
+        <template>
+          <paper-cropper-dialog id="cropperZone2"    crop-src="images/polymerlogo.png"  ></paper-cropper-dialog>
+          <paper-button onclick="document.getElementById('cropperZone2').open()">LoadCropper</paper-button>
+
+          <script>
+
+          </script>
         </template>
       </demo-snippet>
     </div>

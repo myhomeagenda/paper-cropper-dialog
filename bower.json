@@ -12,7 +12,9 @@
     "paper-dialog": "PolymerElements/paper-dialog",
     "paper-icon-button": "PolymerElements/paper-icon-button",
     "paper-button": "PolymerElements/paper-button",
-    "neon-animation": "PolymerElements/neon-animation"
+    "neon-animation": "PolymerElements/neon-animation",
+    "cropper": "^2.3.4",
+    "jquery": "^3.2.1"
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page",

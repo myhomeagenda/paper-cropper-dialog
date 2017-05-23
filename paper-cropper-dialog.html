@@ -5,6 +5,9 @@
 <link rel="import" href="../neon-animation/animations/scale-up-animation.html">
 <link rel="import" href="../neon-animation/animations/fade-out-animation.html">
 <link rel="import" href="../iron-icons/iron-icons.html">
+<script src="../jquery/dist/jquery.min.js"></script>
+<link  href="../cropper/dist/cropper.min.css" rel="stylesheet">
+<script src="../cropper/dist/cropper.min.js"></script>
 <!--
 
 ### paper-dropzone-dialog
@@ -37,6 +40,48 @@ Material design: paper-dropzone-dialog
       paper-dialog{
         margin-top: 0px !important;
 
+      }
+      img {
+        max-width: 100%;
+      }
+      paper-button{
+        text-transform: none !important;
+      }
+
+      .actions {
+        background-color: trasparent;
+      }
+
+      .actions.orange-border {
+        border: 1px solid orange;
+        background-color: transparent;
+        color: orange;
+      }
+
+      .actions.green-border {
+        border: 1px solid rgb(36, 221, 187);
+        background-color: transparent;
+        color: rgb(36, 221, 187);
+      }
+
+      .actions.blue-border {
+        border: 2px solid #51c1e2;
+        border-bottom: 3px solid #51c1e2 !important;
+        background-color: transparent;
+        color: #51c1e2;
+      }
+
+      .actions.dgreen-border {
+        border: 2px solid #b2d06c;
+        border-bottom: 3px solid #b2d06c !important;
+        background-color: transparent;
+        color: #b2d06c;
+      }
+      .actions {
+        background-color: white;
+        color: gray;
+        margin-top: 5px;
+        margin-bottom: 5px;
       }
 
       @media only screen and (max-width: 768px) {
@@ -71,22 +116,46 @@ Material design: paper-dropzone-dialog
         margin:0px !important;
         padding:0px !important;
       }
+      .flex-horizontal {
+         @apply --layout-horizontal;
+       }
+       .flexchild {
+         @apply --layout-flex;
+       }
+       .flex-center-justified {
+          @apply --layout-horizontal;
+          @apply --layout-center-justified;
+        }
+
       #cropperDBox{
         width: 350px;
         height:350px;
         background-color:white;
+        margin-bottom:20px;
+      }
+      #instead{
+        width:40px;
+        line-height: 37px;
+        vertical-align: middle;
+        text-align:center;
       }
       #cancelButton{
         height:30px;
-        width:140px;
+        width:120px;
         border:2px solid;
         border-radius:0px 0px 0px 0px;
       }
       #saveButton{
         height:30px;
-        width:140px;
+        width:120px;
         border:2px solid;
         border-radius:0px 0px 0px 0px;
+      }
+      #cropperZoneDialog{
+        box-shadow: 0px 0px 0px 0px !important;
+        background-color:transparent;
+
+
       }
     </style>
     <style is="custom-style">
@@ -101,25 +170,25 @@ Material design: paper-dropzone-dialog
     </style>
 
     <paper-dialog id="cropperZoneDialog" entry-animation="scale-up-animation" exit-animation="fade-out-animation" with-backdrop>
+      <paper-icon-button botton-tap="close" class="top" icon="close" on-tap="dismissCropperZone" dialog-dismiss></paper-icon-button>
 
       <div class="self-center">
-        <div class="cropperDBox">
-          <img id="cropperImage"></img>
+        <div id="cropperDBox">
+          <img id="cropperImage" src="http://www.mammamarsupio.eu/wp-content/uploads/2016/07/prova.jpg"></img>
         </div>
 
-        <paper-toolbar class="medium head-codice actions" justify="justified">
+        <div id="buttonMenu" class="container flex-horizontal flex-center-justified flex medium head-codice actions" justify="justified">
           <div class="top">
             <paper-button toggle id="cancelButton" class="actions orange-border" on-tap="cropperBack">Cancel</paper-button>
           </div>
-          <div class="top">o</div>
+          <div class="top" id="instead">o</div>
           <div class="top">
             <paper-button toggle id="saveButton"  class="actions green-border" on-tap="cropperSave">Save</paper-button>
           </div>
-        </paper-toolbar>
+        </div>
       </div>
 
 
-      <paper-icon-button botton-tap="close" class="top" icon="close" on-tap="dismissCropperZone" dialog-dismiss></paper-icon-button>
 
     </paper-dialog>
 
@@ -144,13 +213,146 @@ Material design: paper-dropzone-dialog
         value: "Exit",
         notify: true
       },
-    },
+      previewSrc:{
+        type: String,
 
+        notify:true,
+        observer: "_previewSrc"
+      },
+      _imageSrc:{
+        type: String,
+
+        notify:true
+      },
+      cropSrc:{
+        type: String,
+        notify:true,
+        observer: "_cropSrc"
+      },
+      cropWidth:{
+        type: Number,
+        value:150,
+        notify:true
+      },
+      cropHeight:{
+        type: Number,
+        value:150,
+        notify:true
+      },
+
+      previewOnly:{
+        type: Boolean,
+        value: false,
+        notify: true,
+        observer: '_changePreview'
+      }
+    },
+    observers: [
+    '_createCropper(previewOnly,cropSrc)',
+    '_createPreview(previewOnly,previewSrc)'
+    ],
+    _previewSrc:function(newValue,oldValue){
+      if (this.previewOnly == false){
+        return;
+      }
+      this._imageSrc = newValue;
+    },
+    _cropSrc:function(newValue,oldValue){
+      if (this.previewOnly == true){
+        return;
+      }
+      this._imageSrc = newValue;
+      //this.$.cropperImage.src = newValue;
+      this._createCropper();
+    },
+    _createPreview:function(previewOnly,previewSrc){
+      if (this.previewOnly == false){
+        return;
+      }
+      this._setPreviewImage(previewSrc);
+    },
+    _changePreview:function(newvalue,oldvalue){
+      if (oldvalue == false && newvalue == true){
+        this._destroyCropper();
+      }
+    },
+    _destroyCropper:function(){
+
+    },
+    _createCropper:function(){
+      var me = this;
+
+      if (this.previewOnly == true){ // only cropper.
+        return;
+      }
+      console.log(this.cropWidth / this.cropHeight);
+      alert("mi chiamo fabio");
+      $('#cropperImage').cropper({
+        aspectRatio: 16 / 9,
+        crop: function(e) {
+          // Output the result data for cropping image.
+          console.log(e.x);
+          console.log(e.y);
+          console.log(e.width);
+          console.log(e.height);
+          console.log(e.rotate);
+          console.log(e.scaleX);
+          console.log(e.scaleY);
+        }
+      });
+      /*$("#cropperImage").cropper({
+        aspectRatio: this.cropWidth / this.cropHeight,
+        autoCropArea: 0,
+        viewMode:1,
+        movable: false,
+        resizable: false,
+        guides: false,
+
+        highlight: true,
+        minCropBoxWidth: this.cropWidth,
+        minCropBoxHeight: this.cropHeight,
+        toggleDragModeOnDblclick: false,
+
+        //cropBoxMovable: false,
+        cropBoxResizable: false,
+        background: false,
+        modal: true,
+        zoomable: false,
+        dragMode:"move",
+        built: function () {
+          // Width and Height params are number types instead of string
+          //background-color:white
+          console.log(me.cropWidth,me.cropHeight);
+          $(me.$.cropperImage).cropper("setCropBoxData", { width: parseInt(me.cropWidth), height: parseInt(me.cropHeight) });
+          $(".cropper-crop-box").css("background-color","white");
+          $(".cropper-view-box").css("outline","0px");
+          $(".cropper-center").css("display","none");
+          $(".cropper-face").css("cursor","pointer");
+        }
+      });*/
+    },
     dismissCropperZone: function() {
       this.fire("close");
     },
     attached: function() {
 
+    },
+    cropperSave: function(){
+      if (this.previewOnly == true){
+        this.fire("save-preview");
+      }else{
+        obj = {
+          data: me.$.cropperImage.cropper('getCroppedCanvas').toDataURL()
+        };
+        this.fire("save", obj);
+      }
+    },
+    cropperBack: function(){
+      this.fire("close");
+    },
+    _setPreviewImage:function(image){
+      this.$.cropperDBox.style.background = "white  url("+image+")  no-repeat center ";
+      this.$.cropperDBox.style.backgroundSize = "350px 350px";
     },
     open:function(){
       this.$.cropperZoneDialog.open();
