@@ -365,7 +365,7 @@ Material design: paper-dropzone-dialog
     },
     cropperSave: function(){
       if (this.previewOnly == true){
-        this.fire("save-preview");
+        this.fire("save",{});
         this.close();
       }else{
         obj = {
@@ -378,7 +378,7 @@ Material design: paper-dropzone-dialog
     },
     cropperBack: function(){
       if (this.previewOnly == true){
-        this.fire("back-preview");
+        this.fire("back");
         this.close();
       }else{
         this.fire("back");
@@ -412,7 +412,8 @@ Material design: paper-dropzone-dialog
         zoomable: false,
         dragMode:"move",
 
-      }).disable();
+      }); 
+      $(this.$.cropperImage).cropper("disable");
 
     },
     open:function(){
