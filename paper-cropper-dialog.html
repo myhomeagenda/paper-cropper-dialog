@@ -96,6 +96,7 @@ Material design: paper-dropzone-dialog
           padding: 0;
           margin: 0;
           margin-bottom: 0px !important;
+          background-color:white !important;
         }
         .self-center{
           margin: 0;
@@ -274,7 +275,9 @@ Material design: paper-dropzone-dialog
       if (this.previewOnly == false){
         return;
       }
-      this._setPreviewImage(this.previewSrc);
+      this._imageSrc = previewSrc;
+      //this.$.cropperImage.src = newValue;
+      this._setPreviewImage();
     },
     _changePreview:function(newvalue,oldvalue){
       if (oldvalue == false && newvalue == true){
@@ -290,8 +293,6 @@ Material design: paper-dropzone-dialog
       if (this.previewOnly == true){ // only cropper.
         return;
       }
-      console.log(this.cropWidth / this.cropHeight);
-      alert("mi chiamo fabio");
       var image = document.getElementById('cropperImage');
       var old = $(image).attr("src");
       //$(image).attr("src", "").hide();
@@ -348,11 +349,11 @@ Material design: paper-dropzone-dialog
           // Width and Height params are number types instead of string
           //background-color:white
           console.log(me.cropWidth,me.cropHeight);
-          $(me.$.cropperImage).cropper("setCropBoxData", { width: parseInt(me.cropWidth), height: parseInt(me.cropHeight) });
-          $(".cropper-crop-box").css("background-color","white");
-          $(".cropper-view-box").css("outline","0px");
-          $(".cropper-center").css("display","none");
-          $(".cropper-face").css("cursor","pointer");
+          $().cropper("setCropBoxData", { width: parseInt(me.cropWidth), height: parseInt(me.cropHeight) });
+          $(me.$.cropperImage.querySelector(".cropper-crop-box")).css("background-color","white");
+          $(me.$.cropperImage.querySelector(".cropper-view-box")).css("outline","0px");
+          $(me.$.cropperImage.querySelector(".cropper-center")).css("display","none");
+          $(me.$.cropperImage.querySelector(".cropper-face")).css("cursor","pointer");
         }
       });
     },
@@ -385,10 +386,33 @@ Material design: paper-dropzone-dialog
       }
     },
     _setPreviewImage:function(image){
+      if (this.first_time_upload == true) {
+          $(this.$.cropperImage).cropper("destroy");
+          this.first_time_upload =  false;
+      }else{
+          this.first_time_upload = true;
+      }
+      $(this.$.cropperImage).cropper({
+        aspectRatio: this.cropWidth / this.cropHeight,
+        autoCrop: false,
+        viewMode:1,
+        movable: false,
+        resizable: false,
+        guides: false,
 
-      this.$.cropperDBox.style.background = "white  url("+image+")  no-repeat center ";
-      this.$.cropperDBox.style.backgroundSize = "175px 175px";
+        highlight: true,
+        minCropBoxWidth: this.cropWidth,
+        minCropBoxHeight: this.cropHeight,
+        toggleDragModeOnDblclick: false,
 
+        //cropBoxMovable: false,
+        cropBoxResizable: false,
+        background: false,
+        modal: true,
+        zoomable: false,
+        dragMode:"move",
+
+      }).disable();
 
     },
     open:function(){
