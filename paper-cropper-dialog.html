@@ -73,7 +73,7 @@ Material design: paper-dropzone-dialog
         color: #51c1e2;
       }
 
-      .actions.dgreen-border {
+      .actions.green-border {
         border: 2px solid #b2d06c;
         border-bottom: 3px solid #b2d06c !important;
         background-color: transparent;
@@ -207,29 +207,17 @@ Material design: paper-dropzone-dialog
         <div id="cropperDBox">
           <img id="cropperImage" src="{{_imageSrc}}"></img>
         </div>
-        <template is="dom-if" if="{{previewOnly}}" restamp="true">
-          <div id="buttonMenu" class="container flex-horizontal flex-center-justified flex medium head-codice actions" justify="justified">
-            <div class="top">
-              <paper-button toggle id="cancelButton" class="actions orange-border" on-tap="cropperBack">Cancel</paper-button>
-            </div>
-            <div class="top" id="instead">o</div>
-            <div class="top">
-              <paper-button toggle id="saveButton"  class="actions green-border" on-tap="cropperSave">Save</paper-button>
-            </div>
-          </div>
-        </template>
 
-        <template is="dom-if" if="{{!previewOnly}}" restamp="true">
           <div id="buttonMenu" class="container flex-horizontal flex-center-justified flex medium head-codice actions" justify="justified">
             <div class="top">
-              <paper-button toggle id="cancelButton" class="actions preview-cancel" on-tap="cropperBack">Cancel</paper-button>
+              <paper-button toggle id="cancelButton" class="actions {{cancelClass}} orange-border preview-cancel " on-tap="cropperBack">Cancel</paper-button>
             </div>
             <div class="top" id="instead">o</div>
             <div class="top">
-              <paper-button toggle id="saveButton"  class="actions preview-save" on-tap="cropperSave">Save</paper-button>
+              <paper-button toggle id="saveButton"  class="actions {{saveClass}} green-border preview-save" on-tap="cropperSave">Save</paper-button>
             </div>
           </div>
-        </template>
+
       </div>
 
 
@@ -329,6 +317,16 @@ Material design: paper-dropzone-dialog
       if (oldvalue == false && newvalue == true){
         this._destroyCropper();
       }
+      if (newvalue == true){
+        this.cancelClass = "preview-cancel";
+        this.saveClass = "preview-save";
+      }
+      if (newvalue == false){
+        this.cancelClass = "orange-border";
+        this.saveClass = "green-border";
+      }
+
+
     },
     _destroyCropper:function(){
 
