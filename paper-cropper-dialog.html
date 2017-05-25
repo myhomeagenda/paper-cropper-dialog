@@ -403,6 +403,7 @@ Material design: paper-dropzone-dialog
       }
     },
     _setPreviewImage:function(image){
+      var me = this;
       if (this.first_time_upload == true) {
           $(this.$.cropperImage).cropper("destroy");
       }else{
@@ -427,7 +428,14 @@ Material design: paper-dropzone-dialog
         modal: true,
         zoomable: false,
         dragMode:"move",
+        built: function () {
+          // Width and Height params are number types instead of string
+          //background-color:white
+          console.log(me.cropWidth,me.cropHeight);
+          $().cropper("setCropBoxData", { width: parseInt(me.cropWidth), height: parseInt(me.cropHeight) });
 
+          $(me.$.cropperImage.querySelector(".cropper-disabled")).css("cursor","default");
+        }
       });
       $(this.$.cropperImage).cropper("disable");
 
