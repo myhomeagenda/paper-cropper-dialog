@@ -167,6 +167,22 @@ Material design: paper-dropzone-dialog
       #instead{
         font-weight: bold;
       }
+      .preview-cancel{
+        color: #5dc4e3;
+        margin-left: 9px;
+        width: 185px;
+      }
+
+      .preview-save{
+        color: #5dc4e3;
+        margin-left: 0px;
+        border-bottom: 2px solid;
+        width: inherit;
+        margin-right: 12px;
+        height: 20px;
+        position: relative;
+        top: 4px;
+      }
     </style>
     <style is="custom-style">
       paper-icon-button {
@@ -191,16 +207,29 @@ Material design: paper-dropzone-dialog
         <div id="cropperDBox">
           <img id="cropperImage" src="{{_imageSrc}}"></img>
         </div>
+        <template is="dom-if" if="{{previewOnly}}" restamp="true">
+          <div id="buttonMenu" class="container flex-horizontal flex-center-justified flex medium head-codice actions" justify="justified">
+            <div class="top">
+              <paper-button toggle id="cancelButton" class="actions orange-border" on-tap="cropperBack">Cancel</paper-button>
+            </div>
+            <div class="top" id="instead">o</div>
+            <div class="top">
+              <paper-button toggle id="saveButton"  class="actions green-border" on-tap="cropperSave">Save</paper-button>
+            </div>
+          </div>
+        </template>
 
-        <div id="buttonMenu" class="container flex-horizontal flex-center-justified flex medium head-codice actions" justify="justified">
-          <div class="top">
-            <paper-button toggle id="cancelButton" class="actions orange-border" on-tap="cropperBack">Cancel</paper-button>
+        <template is="dom-if" if="{{!previewOnly}}" restamp="true">
+          <div id="buttonMenu" class="container flex-horizontal flex-center-justified flex medium head-codice actions" justify="justified">
+            <div class="top">
+              <paper-button toggle id="cancelButton" class="actions preview-cancel" on-tap="cropperBack">Cancel</paper-button>
+            </div>
+            <div class="top" id="instead">o</div>
+            <div class="top">
+              <paper-button toggle id="saveButton"  class="actions preview-save" on-tap="cropperSave">Save</paper-button>
+            </div>
           </div>
-          <div class="top" id="instead">o</div>
-          <div class="top">
-            <paper-button toggle id="saveButton"  class="actions green-border" on-tap="cropperSave">Save</paper-button>
-          </div>
-        </div>
+        </template>
       </div>
 
 
