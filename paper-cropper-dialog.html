@@ -308,12 +308,19 @@ Material design: paper-dropzone-dialog
       var image = document.getElementById('cropperImage');
       var old = $(image).attr("src");
       //$(image).attr("src", "").hide();
+      if (this.first_time_upload == true) {
+          $(this.$.cropperImage).cropper("destroy");
+          this.first_time_upload =  false;
+      }else{
+          this.first_time_upload = true;
+      }
+
       /*if (this.first_time_upload == true) {
           $(this.$.cropperImage).cropper("destroy");
           this.first_time_upload =  false;
       }else{
           this.first_time_upload = true;
-      }*/
+      }*
 
 
 
@@ -327,7 +334,7 @@ Material design: paper-dropzone-dialog
         crop: function(e) {
           // Output the result data for cropping image.
           console.log(e.x);
-          console.log(e.y);
+        *  console.log(e.y);
           console.log(e.width);
           console.log(e.height);
           console.log(e.rotate);
@@ -429,12 +436,7 @@ Material design: paper-dropzone-dialog
 
     },
     open:function(){
-      if (this.first_time_upload == true) {
-          $(this.$.cropperImage).cropper("destroy");
-          this.first_time_upload =  false;
-      }else{
-          this.first_time_upload = true;
-      }
+
       this.$.cropperZoneDialog.open();
 
     },
