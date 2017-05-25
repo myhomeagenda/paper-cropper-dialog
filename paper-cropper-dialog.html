@@ -310,7 +310,7 @@ Material design: paper-dropzone-dialog
       //$(image).attr("src", "").hide();
       if (this.first_time_upload == true) {
           $(this.$.cropperImage).cropper("destroy");
-          this.first_time_upload =  false;
+          //this.first_time_upload =  false;
       }else{
           this.first_time_upload = true;
       }
@@ -407,7 +407,6 @@ Material design: paper-dropzone-dialog
     _setPreviewImage:function(image){
       if (this.first_time_upload == true) {
           $(this.$.cropperImage).cropper("destroy");
-          this.first_time_upload =  false;
       }else{
           this.first_time_upload = true;
       }
