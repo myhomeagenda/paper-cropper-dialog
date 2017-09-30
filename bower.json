@@ -1,11 +1,11 @@
 {
-  "name": "paper-cropper-dialog",
+  "name": "mha-paper-cropper-dialog",
   "version": "1.0.0",
   "description": "A Material Design cropper dialog (Polymer 1.x)",
   "authors": [
     "Faan11"
   ],
-  "main": "paper-cropper-dialog.html",
+  "main": "mha-paper-cropper-dialog.html",
   "dependencies": {
     "polymer": "Polymer/polymer",
     "iron-flex-layout": "PolymerElements/iron-flex-layout",

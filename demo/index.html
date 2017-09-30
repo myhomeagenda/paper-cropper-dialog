@@ -4,14 +4,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
-    <title>paper-cropper-dialog demo</title>
+    <title>mha-paper-cropper-dialog demo</title>
 
     <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
 
     <link rel="import" href="../../paper-button/paper-button.html">
     <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
     <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
-    <link rel="import" href="../paper-cropper-dialog.html">
+    <link rel="import" href="../mha-paper-cropper-dialog.html">
 
     <style is="custom-style" include="demo-pages-shared-styles">
     </style>
@@ -24,10 +24,10 @@
   </head>
   <body unresolved>
     <div class="vertical-section-container centered">
-      <h3>Basic paper-cropper-dialog demo</h3>
+      <h3>Basic mha-paper-cropper-dialog demo</h3>
       <demo-snippet>
         <template>
-          <paper-cropper-dialog id="cropperZone" preview-only   preview-src="images/polymerlogo.png"  ></paper-cropper-dialog>
+          <mha-paper-cropper-dialog id="cropperZone" preview-only   preview-src="images/polymerlogo.png"  ></mha-paper-cropper-dialog>
           <paper-button onclick="document.getElementById('cropperZone').open()">LoadImage</paper-button>
 
           <script>
@@ -37,7 +37,7 @@
       </demo-snippet>
       <demo-snippet>
         <template>
-          <paper-cropper-dialog id="cropperZone2"    crop-src="images/polymerlogo.png"  ></paper-cropper-dialog>
+          <mha-paper-cropper-dialog id="cropperZone2"    crop-src="images/polymerlogo.png"  ></mha-paper-cropper-dialog>
           <paper-button onclick="document.getElementById('cropperZone2').open()">LoadCropper</paper-button>
 
           <script>

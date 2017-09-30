@@ -1,12 +1,12 @@
 
-# paper-cropper-dialog
+# mha-paper-cropper-dialog
 
-Material design: paper-cropper-dialog
+Material design: mha-paper-cropper-dialog
 
-`<paper-cropper-dialog>` is a material design cropper.
+`<mha-paper-cropper-dialog>` is a material design cropper.
 
 # Example:
 
 ```html
-<paper-cropper-dialog save-text="Salva" exit-text="Annulla" on-save="saveEvent" on-exit="exitEvent" ></paper-cropper-dialog>
+<mha-paper-cropper-dialog save-text="Salva" exit-text="Annulla" on-save="saveEvent" on-exit="exitEvent" ></mha-paper-cropper-dialog>
 ```
