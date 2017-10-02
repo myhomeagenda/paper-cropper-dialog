@@ -238,7 +238,7 @@ Material design: paper-dropzone-dialog
             </div>
             <div class="top" id="instead"></div>
             <div class="top">
-              <mha-paper-button toggle id="saveButton"  class="actions blue-border " on-tap="cropperSave">{{saveText}}</mha-paper-button>
+              <mha-paper-button toggle id="saveButton"  class="actions blue-border " selectable selected on-tap="cropperSave">{{saveText}}</mha-paper-button>
             </div>
           </div>
 
@@ -279,14 +279,12 @@ Material design: paper-dropzone-dialog
       saveText: {
         type: String,
         value: "Save",
-        notify: true,
-        observer: "_saveText"
+        notify: true
       },
       exitText: {
         type: String,
         value: "Exit",
-        notify: true,
-        observer: "_exitText"
+        notify: true
       },
       previewSrc:{
         type: String,
@@ -326,12 +324,6 @@ Material design: paper-dropzone-dialog
     '_createCropper(previewOnly,cropSrc)',
     '_createPreview(previewOnly,previewSrc)'
     ],
-    _saveText:function(newvalue,oldvalue){
-      this.$.saveButton.innerText = newvalue;
-    },
-    _exitText:function(newvalue,oldvalue){
-      this.$.cancelButton.innerText = newvalue;
-    },
 
     _previewSrc:function(newValue,oldValue){
       if (this.previewOnly == false){
