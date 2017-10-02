@@ -57,6 +57,10 @@ Material design: paper-dropzone-dialog
         }
       }
 
+      paper-button{
+        text-transform: none !important;
+      }
+
       .actions {
         background-color: trasparent;
       }
@@ -153,13 +157,13 @@ Material design: paper-dropzone-dialog
       #cancelButton{
         height:30px;
         width:130px;
-        border:2px solid;
+
         border-radius:0px 0px 0px 0px;
       }
       #saveButton{
         height:30px;
         width:130px;
-        border:2px solid;
+
         border-radius:0px 0px 0px 0px;
       }
       #cropperZoneDialog{
@@ -176,13 +180,13 @@ Material design: paper-dropzone-dialog
         font-weight: bold;
       }
       .preview-cancel{
-        color: #5dc4e3 !important;
+        color: var(--mha-colors-generic-blue1) !important;
         margin-left: 9px !important;
         width: 185px !important;
       }
 
       .preview-save{
-        color: #5dc4e3 !important;
+        color: var(--mha-colors-generic-blue1) !important;
         margin-left: 0px !important;
         border: 0px solid !important;
         border-bottom: 2px solid !important;
@@ -190,8 +194,9 @@ Material design: paper-dropzone-dialog
         margin-right: 12px !important;
         height: 20px !important;
         position: relative !important;
-        top: 4px !important;
+        top: 7px !important;
       }
+
     </style>
     <style is="custom-style">
       paper-icon-button {
