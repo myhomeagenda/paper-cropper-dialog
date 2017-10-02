@@ -5,6 +5,8 @@
 <link rel="import" href="../neon-animation/animations/scale-up-animation.html">
 <link rel="import" href="../neon-animation/animations/fade-out-animation.html">
 <link rel="import" href="../iron-icons/iron-icons.html">
+<link rel="import" href="../mha-paper-button/mha-paper-button.html">
+<link rel="import" href="../mha-colors/mha-colors.html">
 
 <script src="../jquery/dist/jquery.min.js"></script>
 
@@ -46,7 +48,7 @@ Material design: paper-dropzone-dialog
       img {
         max-width: 100%;
       }
-      paper-button{
+      mha-paper-button{
         text-transform: none !important;
       }
 
@@ -54,19 +56,20 @@ Material design: paper-dropzone-dialog
         background-color: trasparent;
       }
 
-      .actions.orange-border {
-        border: 1px solid orange;
-        background-color: transparent;
-        color: orange;
+      .actions.blue-border {
+        /*border: 1px solid orange;
+        background-color: transparent;*/
+        /*color: orange;*/
+        --mha-paper-button-color:var(--mha-colors-generic-blue1);
       }
 
-      .actions.green-border {
+      /*.actions.blue-border {
         border: 1px solid rgb(36, 221, 187);
         background-color: transparent;
         color: rgb(36, 221, 187);
-      }
+      }*/
 
-      .actions.blue-border {
+    /*  .actions.blue-border {
         border: 2px solid #51c1e2;
         border-bottom: 3px solid #51c1e2 !important;
         background-color: transparent;
@@ -78,7 +81,7 @@ Material design: paper-dropzone-dialog
         border-bottom: 3px solid #b2d06c !important;
         background-color: transparent;
         color: #b2d06c;
-      }
+      }*/
       .actions {
         background-color: white;
         color: gray;
@@ -209,15 +212,34 @@ Material design: paper-dropzone-dialog
           <img id="cropperImage" src="{{_imageSrc}}"></img>
         </div>
 
+        <template is="dom-if" if="{{!previewOnly}}" >
+
           <div id="buttonMenu" class="container flex-horizontal flex-center-justified flex medium head-codice actions" justify="justified">
             <div class="top">
-              <paper-button toggle id="cancelButton" class$="actions {{cancelClass}}  " on-tap="cropperBack">Cancel</paper-button>
+              <mha-paper-button no-border toggle id="cancelButton" class$="actions blue-border" on-tap="cropperBack">{{exitText}}</mha-paper-button>
             </div>
-            <div class="top" id="instead">o</div>
+            <div class="top" id="instead"></div>
             <div class="top">
-              <paper-button toggle id="saveButton"  class$="actions {{saveClass}}" on-tap="cropperSave">Save</paper-button>
+              <mha-paper-button toggle id="saveButton"  class$="actions blue-border " on-tap="cropperSave">{{saveText}}</mha-paper-button>
             </div>
           </div>
+
+        </template>
+
+        <template is="dom-if" if="{{previewOnly}}" >
+
+          <div id="buttonMenu" class="container flex-horizontal flex-center-justified flex medium head-codice actions" justify="justified">
+            <div class="top">
+              <mha-paper-button toggle id="cancelButton" class$="actions preview-cancel" on-tap="cropperBack">{{exitText}}</mha-paper-button>
+            </div>
+            <div class="top" id="instead"></div>
+            <div class="top">
+              <mha-paper-button toggle id="saveButton"  class$="actions preview-save" on-tap="cropperSave">{{saveText}}</mha-paper-button>
+            </div>
+          </div>
+
+        </template>
+
 
       </div>
 
@@ -318,14 +340,14 @@ Material design: paper-dropzone-dialog
       if (oldvalue == false && newvalue == true){
         this._destroyCropper();
       }
-      if (newvalue == true){
+      /*if (newvalue == true){
         this.cancelClass = "preview-cancel";
         this.saveClass = "preview-save";
       }
       if (newvalue == false){
         this.cancelClass = "orange-border";
         this.saveClass = "green-border";
-      }
+      }*/
 
 
     },

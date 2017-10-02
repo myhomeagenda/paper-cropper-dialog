@@ -11,10 +11,11 @@
     "iron-flex-layout": "PolymerElements/iron-flex-layout",
     "paper-dialog": "PolymerElements/paper-dialog",
     "paper-icon-button": "PolymerElements/paper-icon-button",
-    "paper-button": "PolymerElements/paper-button",
     "neon-animation": "PolymerElements/neon-animation",
     "jquery": "^3.2.1",
-    "cropper": "^2.3.4"
+    "cropper": "^2.3.4",
+    "mha-paper-button": "https://github.com/myhomeagenda/mha-paper-button.git",
+    "mha-colors":"https://github.com/myhomeagenda/mha-colors.git"
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page",
