@@ -457,7 +457,7 @@
             Cross-origin image: requires HTML5 CORS settings attributes support (IE 11+).
             Avoid to get a blank output image, you might need to set the maxWidth and maxHeight properties to limited numbers, because of the size limits of a canvas element.
            */
-          data: this.cropper.getCroppedCanvas({fillColor: white,maxWidth:this.cropWidth,maxHeight:this.cropHeight}).toDataURL()
+          data: this.cropper.getCroppedCanvas({fillColor: white,maxWidth:this.cropWidth,maxHeight:this.cropHeight}).toDataURL('image/jpeg')
         };
 
         this.fire("save", obj);
