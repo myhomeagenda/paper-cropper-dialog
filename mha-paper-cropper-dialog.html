@@ -236,8 +236,8 @@
     .cropper-face{
       cursor:pointer !important;
     }
-    #cropperDBox{
-      /* Manually adjust image */ 
+    #cropperDBox.preview{
+      /* Manually adjust image */
       position: relative;
       top: 30px;
       left: 21px;
@@ -250,7 +250,7 @@
       <paper-icon-button botton-tap="close" class="top" icon="close" on-tap="dismissCropperZone" dialog-dismiss></paper-icon-button>
 
       <div class="self-center">
-        <div id="cropperDBox">
+        <div id="cropperDBox" class$="{{_calculatePreview(previewOnly)}}">
           <img id="cropperImage" src="{{_imageSrc}}"></img>
         </div>
 
@@ -348,6 +348,9 @@
     '_createCropper(previewOnly,cropSrc,cropWidth,cropHeight)',
     '_createPreview(previewOnly,previewSrc)'
     ],
+    _calculatePreview(previewOnly){
+      return previewOnly?"preview":"";
+    }
     _createPreview:function(previewOnly,previewSrc){
       if (this.previewOnly === false){
         return;
