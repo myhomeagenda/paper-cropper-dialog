@@ -499,7 +499,7 @@
             Avoid to get a blank output image, you might need to set the maxWidth and maxHeight properties to limited numbers, because of the size limits of a canvas element.
            */
           /*'image/jpeg' */
-          data: this.cropper.getCroppedCanvas({fillColor: "white",width:this.cropWidth,height:this.cropHeight,maxWidth:this.cropWidth,maxHeight:this.cropHeight,imageSmoothingEnabled:true,imageSmoothingQuality:"high" }).toDataURL()
+          data: this.cropper.getCroppedCanvas({fillColor: "white",width:this.cropWidth,height:this.cropHeight,maxWidth:this.cropWidth,maxHeight:this.cropHeight,imageSmoothingEnabled:true,imageSmoothingQuality:"high" }).toDataURL('image/jpeg',1)
         };
 
         this.fire("save", obj);
