@@ -363,7 +363,7 @@
         minContainerHeight: 350,
         background: false,
         modal: false,
-        built: function () {
+        ready() {
           me.cropper.setCropBoxData({width: parseInt(me.cropWidth), height: parseInt(me.cropHeight)});
         }
       });
