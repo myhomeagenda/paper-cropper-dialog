@@ -389,12 +389,12 @@
       var me = this;
       this.cropper = new Cropper(this.$.cropperImage, { /* new Croppie(*/
         viewMode:1,
-        dragMode:'move',
+        dragMode:'crop',
         initialAspectRatio: cropWidth / cropHeight,
         aspectRatio: cropWidth / cropHeight,
         rotatable: false,
         zoomable: false,
-        cropBoxResizable: false,
+        cropBoxResizable: true,
         minCropBoxWidth: cropWidth,
         minCropBoxHeight: cropHeight,
         minContainerWidth: 350,
