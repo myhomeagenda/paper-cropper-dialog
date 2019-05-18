@@ -348,7 +348,7 @@
       }*/
       this._destroyCropper();
       this._imageSrc = cropSrc;
-
+      var me = this;
       this.cropper = new Cropper(this.$.cropperImage, { /* new Croppie(*/
         viewMode:1,
         dragMode:'move',
@@ -362,7 +362,10 @@
         minContainerWidth: 350,
         minContainerHeight: 350,
         background: false,
-        modal: false
+        modal: false,
+        built: function () {
+          me.cropper.setCropBoxData({width: parseInt(me.cropWidth), height: parseInt(me.cropHeight)});
+        }
       });
       // this.cropper.update();
       // this.cropper.rotate({value:20});
