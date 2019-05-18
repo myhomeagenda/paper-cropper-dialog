@@ -15,7 +15,11 @@
     "cropper": "^2.3.4",
     "mha-paper-button": "https://github.com/myhomeagenda/mha-paper-button.git",
     "mha-colors": "https://github.com/myhomeagenda/mha-colors.git",
-    "mha-jquery-import": "https://github.com/myhomeagenda/mha-jquery-import.git"
+    "mha-jquery-import": "https://github.com/myhomeagenda/mha-jquery-import.git",
+    "croppr": "^2.3.1",
+    "mha-croppr-import": "https://github.com/myhomeagenda/mha-croppr-import.git",
+    "mha-croppie-import": "https://github.com/myhomeagenda/mha-croppie-import.git",
+    "paper-dialog-resp": "https://github.com/faan11/paper-dialog-resp.git"
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page",
