@@ -211,6 +211,18 @@
     .cropper-bg{
       background-color: gray !important;
     }
+    .cropper-crop-box{
+      background-color:white !important;
+    }
+    .cropper-view-box{
+      outline:0px !important;
+    }
+    .cropper-center{
+      display:none !important;
+    }
+    .cropper-face{
+      cursor:pointer !important;
+    }
     </style>
     <!-- entry-animation="scale-up-animation" exit-animation="fade-out-animation" -->
 
@@ -366,7 +378,7 @@
         minContainerWidth: 350,
         minContainerHeight: 350,
         background: false,
-        modal: false,
+        modal: true,
         ready() {
           me.cropper.setCropBoxData({width: parseInt(me.cropWidth), height: parseInt(me.cropHeight)});
         }
